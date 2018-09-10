@@ -1,12 +1,12 @@
 import React from "react";
 import PrivateRoutes from './PrivateRoutes'
 import { Route,Redirect } from "react-router-dom";
-import WithPublicHeader from "../components/public/WithPublicHeader";
+import WithPublicHeader from "../components/publicRoutes/WithPublicHeader";
 import PublicHome  from "../components/public/PublicHome";
 import PublicAbout from "../components/public/PublicAbout";
 import PrivateAbout from "../components/private/PrivateAbout";
 import PrivateHome from "../components/private/PrivateHome";
-import WithPrivateHeader from "../components/private/WithPrivateHeader";
+import WithPrivateHeader from "../components/privateRoutes/WithPrivateHeader";
 
 class ReactRouter extends React.Component {
   render() {
