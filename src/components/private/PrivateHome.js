@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-class App extends Component {
+class PrivateHome extends Component {
 
   render() {
     return (
       <div style={{ textAlign: "center", marginTop: "10rem" }}>
-        <h1>App is there</h1>
+        <h1>private home</h1>
       </div>
     );
   }
 }
-export default App;
+export default PrivateHome;
 

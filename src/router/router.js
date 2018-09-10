@@ -1,31 +1,32 @@
 import React from "react";
-import { Route } from "react-router-dom";
-import App from "../components/App";
-import Posts from "../components/Posts";
 import PrivateRoutes from './PrivateRoutes'
-import PrivateHome from "../components/privateRoutes/PrivateHome";
-import Imp from "../components/privateRoutes/Imp";
-import PublicLayout from "./PublicLayout";
-import PrivateLayout from "./PrivateLayout";
+import { Route,Redirect } from "react-router-dom";
+import WithPublicHeader from "../components/public/WithPublicHeader";
+import PublicHome  from "../components/public/PublicHome";
+import PublicAbout from "../components/public/PublicAbout";
+import PrivateAbout from "../components/private/PrivateAbout";
+import PrivateHome from "../components/private/PrivateHome";
+import WithPrivateHeader from "../components/private/WithPrivateHeader";
+
 class ReactRouter extends React.Component {
   render() {
     return (
       <React.Fragment>
-      { !isAuth ?
-          <PublicLayout>
-            <Route exact path="/" component={App} />
-            <Route path="/posts" component={Posts} />
-          </PublicLayout>
-          :
-          <PrivateLayout>
-            <PrivateRoutes path="/PrivateHome" component={PrivateHome} />
-            <PrivateRoutes path="/Imp" component={Imp} />
-          </PrivateLayout>
-        }
+        {/* AT EMPTY ROUTE */}
+        <Route  exact path="/" render={() => (<Redirect to="/public" />)} />
+        {/* PUBLIC ROUTES */}
+        <Route  path="/public" component={WithPublicHeader} />
+        <Route  path="/public/home" component={PublicHome} />
+        <Route  path="/public/about" component={PublicAbout} />
+        {/* PRIVATE ROUTES */}
+        <PrivateRoutes  path="/private" component={WithPrivateHeader} />
+        <PrivateRoutes  path="/private/home" component={PrivateHome} />
+        <PrivateRoutes  path="/private/about" component={PrivateAbout} />
+        {/* any wrong routes */}
+        <Route  exact path="*" render={() => (<Redirect to="/public" />)} />
       </React.Fragment>
     );
   }
 }
 
 export default ReactRouter;
-const isAuth = false;
