@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-class WithPrivateHeader extends Component {
+class WithPrivateHeader extends React.PureComponent {
  
     header = {
         display: "flex",
@@ -9,16 +9,17 @@ class WithPrivateHeader extends Component {
         backgroundColor:"lightblue"
     };
     render() {
+        console.log("render method is called of privarte header");
         return (
             <div style={this.header}>
                 <Link to={{
-                    pathname: this.props.match.url + '/home'
+                    pathname:  '/privateHome'
                 }}><h2>private Home</h2></Link>
                 <Link to={{
-                    pathname: this.props.match.url + '/about'
+                    pathname: '/privateAbout'
                 }}><h2>private about</h2></Link>
                   <Link to={{
-                    pathname:'/public'
+                    pathname:'/'
                 }}><h2> LOGOUT </h2></Link>
             </div>
         );

@@ -1,29 +1,28 @@
 import React from "react";
 import PrivateRoutes from './PrivateRoutes'
+import PublicRoutes from "./PublicRoutes";
 import { Route,Redirect } from "react-router-dom";
-import WithPublicHeader from "../components/publicRoutes/WithPublicHeader";
-import PublicHome  from "../components/public/PublicHome";
-import PublicAbout from "../components/public/PublicAbout";
-import PrivateAbout from "../components/private/PrivateAbout";
-import PrivateHome from "../components/private/PrivateHome";
-import WithPrivateHeader from "../components/privateRoutes/WithPrivateHeader";
+import PublicHome  from "../components/publicRoutes/PublicHome";
+import PublicAbout from "../components/publicRoutes/PublicAbout";
+import PrivateAbout from "../components/privateRoutes/PrivateAbout";
+import PrivateHome from "../components/privateRoutes/PrivateHome";
 
 class ReactRouter extends React.Component {
   render() {
     return (
       <React.Fragment>
         {/* AT EMPTY ROUTE */}
-        <Route  exact path="/" render={() => (<Redirect to="/public" />)} />
+        {/* <Route  exact path="/" render={() => (<Redirect to="/publicHome" />)} /> */}
         {/* PUBLIC ROUTES */}
-        <Route  path="/public" component={WithPublicHeader} />
-        <Route  path="/public/home" component={PublicHome} />
-        <Route  path="/public/about" component={PublicAbout} />
+        <PublicRoutes exact path='/' component ={PublicHome}/>
+        <PublicRoutes path='/publicHome' component ={PublicHome}/>
+        <PublicRoutes path='/publicAbout' component ={PublicAbout}/>
+
         {/* PRIVATE ROUTES */}
-        <PrivateRoutes  path="/private" component={WithPrivateHeader} />
-        <PrivateRoutes  path="/private/home" component={PrivateHome} />
-        <PrivateRoutes  path="/private/about" component={PrivateAbout} />
+        <PrivateRoutes path="/privateHome" component={PrivateHome} />
+        <PrivateRoutes path="/privateAbout" component={PrivateAbout} />
         {/* any wrong routes */}
-        <Route  exact path="*" render={() => (<Redirect to="/public" />)} />
+        {/* <Route path="*" render={() => (<Redirect to="/" />)} /> */}
       </React.Fragment>
     );
   }
